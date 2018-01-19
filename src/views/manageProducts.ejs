@@ -1,0 +1,80 @@
+<%/*=======================================
+Author : Camélia Benhmida Zarzitski
+Date : 14/01/2018
+Fichier : vue Gestion des catégories
+=======================================*/%>
+
+<% var title = 'Gestion des Produits' %>
+<% include head %>
+<% include header %>
+
+<section>
+  <% if(categories.length == 0) { %>
+  <aside class="w3-card-4 w3-margin">
+    <h3>Pas de catégorie trouvée !</h3>
+  </aside>
+  <% } %>
+  <% if(categories.length > 0) { %>
+    <% categories.forEach(function(x){ %>
+      <aside class="w3-card-4 w3-margin">
+        <div class="w3-container w3-brown">
+          <h2 class="w3-lobster">Gestion des Produits - <%= x.categorie.nom %></h2>
+        </div>
+        <table class="w3-table w3-striped">
+          <tr class="w3-lobster">
+            <th></th>
+            <th>Image</th>
+            <th>Nom du produit</th>
+            <th>Detail</th>
+            <th>Origine</th>
+            <th>Prix Unitaire</th>
+          </tr>
+          <% x.produits.forEach(function(product){ %>
+            <tr>
+              <form class="w3-container" method="post" action="">
+                <input type="hidden" name="idProduit" value="<%= product.id %>" required>
+                <input type="hidden" name="idCategorie" value="<%= x.categorie.id %>" required>
+                <input type="hidden" name="profilepic" id="profilepic_update_<%= product.id %>"/> <!-- l'input picture va contenir l'image sous forme d'une data url -->
+                <td>
+                  <canvas id="preview_update_<%= product.id %>" width="0" height="0"></canvas>
+                  <img src="<%= product.image %>" />
+                </td>
+                <td>
+                  <input class="w3-btn w3-brown w3-lobster"  type="file" id="profilepicfile_update_<%= product.id %>" onchange="loadProfilePic(this, '_update_<%= product.id %>')"/>
+                </td>
+                <td><input class="w3-input w3-border w3-sand"  type="text" name="nom" value="<%= product.nom %>" required></td>
+                <td><textarea rows="1" class="w3-input w3-border w3-sand"  name="detail" required><%= product.detail %></textarea></td>
+                <td><input class="w3-input w3-border w3-sand"  type="text" name="origine" value="<%= product.origine %>" required></td>
+                <td><input class="w3-input w3-border w3-sand"  type="number" name="prixUnitaire" value="<%= product.prixUnitaire %>" required></td>
+
+                <td><button class="w3-btn w3-brown w3-lobster" name="update">Modifier</button></td>
+                <td><button class="w3-btn w3-brown w3-lobster" name="delete">Supprimer</button></td>
+              </form>
+            </tr>
+          <% }) %>
+
+          <tr>
+            <form class="w3-container" method="post" action="">
+              <input type="hidden" name="idCategorie" value="<%= x.categorie.id %>" required>
+              <input type="hidden" name="profilepic" id="profilepic_add_<%= x.categorie.id %>"/> <!-- l'input picture va contenir l'image sous forme d'une data url -->
+              <td>
+                <canvas id="preview_add_<%= x.categorie.id %>" width="0" height="0"></canvas>
+              </td>
+              <td>
+                <input class="w3-btn w3-brown w3-lobster" type="file" id="profilepicfile_add_<%= x.categorie.id %>" onchange="loadProfilePic(this, '_add_<%= x.categorie.id %>')"/>
+              </td>
+              <td><input class="w3-input w3-border w3-sand"  type="text" name="nom" required></td>
+              <td><textarea rows="1" class="w3-input w3-border w3-sand" name="detail" required></textarea></td>
+              <td><input class="w3-input w3-border w3-sand" type="text" name="origine" required></td>
+              <td><input class="w3-input w3-border w3-sand" type="number" name="prixUnitaire" required></td>
+              <td><button class="w3-button w3-circle w3-brown" type="submit" value="add" name="add">+</button></td>
+            </form>
+          </tr>
+        </table>
+      </aside>
+    <% }); %>
+  <% } %>
+</section>
+
+<script src="js/UcGererProduits.js"></script>
+<% include foot %>

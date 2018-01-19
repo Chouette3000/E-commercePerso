@@ -1,0 +1,12 @@
+<%/*=======================================
+Author : Alex Zarzitski
+Date : 12/01/2018
+=======================================*/%>
+<% if (errors.length > 0) { %>
+  <div class="w3-panel w3-yellow">
+    <h3 class="w3-lobster">Attention!</h3>
+    <% errors.forEach(function(error){ %>
+    <p><%= error %></p>
+    <% }); %>
+  </div>
+<% } %>

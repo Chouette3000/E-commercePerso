@@ -1,0 +1,19 @@
+{
+	"name": "store-voiture",
+	"version": "0.0.1",
+	"dependencies": {
+		"app-root-path": "^2.0.1",
+		"body-parser": "^1.14.2",
+		"co": "^4.6.0",
+		"ejs": "^2.3.4",
+		"express": "^4.13.3",
+		"express-session": "^1.15.6",
+		"log4js": "^0.6.29",
+		"morgan": "^1.6.1",
+		"pg": "^7.4.1",
+		"sequelize": "^4.29.0",
+		"serve-favicon": "^2.3.0"
+	},
+	"author": "Mail : <alex.zarzitski@gmail.com> et <benhmida.camelia@gmail.com>",
+	"description": "Projet web sémantique qui consiste à réaliser un site de Ecommerce"
+}
